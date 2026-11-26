@@ -336,6 +336,8 @@
         if (started) return;
         started = true;
         screen.hidden = false;
+        screen.hidden = false;
+        if (window.sfx) sfx.shutdown();
 
         setTimeout(function () {
             shutdownText.textContent = "It's now safe to turn off your computer.";
