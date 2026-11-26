@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday.exe</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header class="top-bar">
+        <span>Birthday.exe</span>
+        <span class="status">Look at the bottom left</span>
+    </header>
+
+    <main class="home">
+
+        <!-- Logo -->
+
+        <h1 class="logo">
+            <span class="blue">B</span><span class="red">i</span><span class="yellow">r</span><span class="blue">t</span><span class="green">h</span><span class="red">d</span><span class="yellow">a</span><span class="blue">y</span><span class="extension">.exe</span>
+        </h1>
+
+        <p class="tagline">
+            Welcome to your Unc era
+        </p>
+
+        <!-- Search section -->
+
+        <form class="search-area" method="POST" action="{{ url_for('home') }}">
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input 
+                type="text"
+                name="keyword"
+                placeholder="Write 27.nov to see your gift"
+                aria-label="Search"
+>
+
+            </div>
+
+            <div class="button-row">
+
+                <button type="submit" name="action" value="search">
+                    Birthday Search
+                </button>
+
+                <button type="button" id="luckyButton">
+                    I'm Feeling Lucky
+                </button>
+
+            </div>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+
+            <p class="hint">
+                Hint: Figure it out yourself, you bozo 😼
+            </p>
+
+        </form>
+
+    </main>
+
+    <footer class="footer">
+
+        <span class="footer-left">
+            Bottom right
+        </span>
+
+        <span class="footer-center">
+            Made somewhere on the internet
+        </span>
+
+        <span class="footer-right">
+            Good Boy
+        </span>
+
+    </footer>
+    <div id="balloon-container"></div>
+
+<script>
+    const luckyButton = document.getElementById("luckyButton");
+    const balloonContainer = document.getElementById("balloon-container");
+
+    const colors = [
+        "#4285f4",
+        "#ea4335",
+        "#fbbc05",
+        "#34a853",
+        "#ff69b4",
+        "#a142f4"
+    ];
+
+    luckyButton.addEventListener("click", function () {
+
+        const buttonPosition = luckyButton.getBoundingClientRect();
+
+        for (let i = 0; i < 16; i++) {
+
+            const balloon = document.createElement("span");
+
+            balloon.className = "celebration-balloon";
+
+            balloon.style.left =
+                `${buttonPosition.left + buttonPosition.width / 2}px`;
+
+            balloon.style.top =
+                `${buttonPosition.top + buttonPosition.height / 2}px`;
+
+            balloon.style.setProperty(
+                "--balloon-color",
+                colors[i % colors.length]
+            );
+
+            balloon.style.setProperty(
+                "--drift",
+                `${(Math.random() - 0.5) * window.innerWidth * 0.65}px`
+            );
+
+            balloon.style.animationDelay = `${Math.random() * 0.4}s`;
+
+            balloon.addEventListener("animationend", function () {
+
+                const position = balloon.getBoundingClientRect();
+
+                // Burst into little confetti pieces
+                for (let j = 0; j < 8; j++) {
+
+                    const confetti = document.createElement("span");
+
+                    confetti.className = "confetti-piece";
+
+                    confetti.style.left = `${position.left + 15}px`;
+                    confetti.style.top = `${position.top + 15}px`;
+
+                    confetti.style.background =
+                        colors[Math.floor(Math.random() * colors.length)];
+
+                    confetti.style.setProperty(
+                        "--dx",
+                        `${(Math.random() - 0.5) * 120}px`
+                    );
+
+                    confetti.style.setProperty(
+                        "--dy",
+                        `${(Math.random() - 0.5) * 120}px`
+                    );
+
+                    confetti.style.setProperty(
+                        "--rotation",
+                        `${Math.random() * 360}deg`
+                    );
+
+                    balloonContainer.appendChild(confetti);
+
+                    confetti.addEventListener("animationend", () => {
+                        confetti.remove();
+                    });
+                }
+
+                balloon.remove();
+            });
+
+            balloonContainer.appendChild(balloon);
+        }
+    });
+</script>
+</body>
+</html>

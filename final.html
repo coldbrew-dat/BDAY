@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday.exe - Final</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- extra styles for this page only, so style.css stays untouched -->
+    <style>
+        .final-window {
+            position: relative;
+            margin: 0 auto;
+            width: min(640px, 100%);
+        }
+
+        /* notebook paper board */
+        .doodle-board {
+            position: relative;
+            height: 410px;
+            margin: 16px 0;
+            background: repeating-linear-gradient(#ffffff 0px, #ffffff 27px, #dce8f5 27px, #dce8f5 28px);
+            border: 2px solid;
+            border-color: #404040 #ffffff #ffffff #404040;
+            overflow: hidden;
+        }
+        .doodle-cat {
+            position: absolute;
+            width: 110px;
+            cursor: grab;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .doodle-cat.dragging { cursor: grabbing; }
+        .doodle-cat svg { display: block; pointer-events: none; }
+        .cat-bubble {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            padding: 2px 8px;
+            background: #ffffff;
+            border: 2px solid #2b2b2b;
+            border-radius: 10px;
+            white-space: nowrap;
+            font-family: "Comic Sans MS", "Chalkboard SE", cursive;
+            font-size: 11px;
+            color: #2b2b2b;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .board-hint {
+            position: absolute;
+            right: 8px;
+            bottom: 6px;
+            font-size: 10px;
+            color: #999999;
+            pointer-events: none;
+        }
+
+        /* shutdown screen */
+        #shutdownScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+        #shutdownScreen[hidden] { display: none; }
+        #shutdownText { font-size: 18px; }
+        #shutdownText.safe { color: #ff9900; font-size: 20px; }
+        #finalMessage {
+            max-width: 420px;
+            margin-top: 26px;
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        #finalMessage.show { opacity: 1; }
+        #restartLink {
+            margin-top: 28px;
+            color: #8ab4ff;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        #restartLink.show { opacity: 1; }
+
+        @media (max-width: 560px) {
+            .doodle-board { height: 450px; }
+            .doodle-cat { width: 92px; }
+        }
+    </style>
+</head>
+
+<body class="desktop98-body">
+
+<!-- wobble filters so the lines look hand drawn -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="wobble1"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="2"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <filter id="wobble2"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <filter id="wobble3"><feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="11"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+</svg>
+
+<div class="desktop98-shell">
+
+    <header class="desktop-topline">
+        <span class="desktop-logo">
+            <span class="g-blue">B</span><span class="g-red">i</span><span class="g-yellow">r</span><span class="g-blue">t</span><span class="g-green">h</span><span class="g-red">d</span><span class="g-yellow">a</span><span class="g-blue">y</span><span class="logo-suffix">.exe</span>
+        </span>
+        <span class="desktop-page-number">ARCHIVE 04 / 04</span>
+    </header>
+
+    <main class="desktop-stage">
+
+        <section class="win98-window final-window">
+            <div class="win98-titlebar">
+                <span>🐱 My Cats</span>
+                <span class="titlebar-static-controls">_ □ ×</span>
+            </div>
+
+            <div class="win98-window-content">
+                <h1>Final gift: cats</h1>
+                <p>
+                    u made it to the end. as a reward, here's some cats.
+                    don't say i never gave u anything.
+                </p>
+
+                <div class="doodle-board" id="doodleBoard">
+                    <span class="board-hint">drag them around 🐱</span>
+                </div>
+
+                <button class="retro-button unlock-button" id="shutdownButton" type="button">
+                    Shut Down
+                </button>
+                <p class="tiny-hint">go on, press it. i dare u.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="win98-taskbar">
+        <button class="start-button" id="startButton" type="button">🪟 Start</button>
+        <span class="taskbar-divider"></span>
+        <span class="taskbar-running">My Cats</span>
+        <span class="taskbar-clock">27 NOV</span>
+    </div>
+
+    <div class="start-menu" id="startMenu" hidden>
+        <div class="start-menu-brand">Unc OS 20</div>
+        <button type="button" id="menuShutdown">Shut Down...</button>
+    </div>
+</div>
+
+<!-- shutdown screen -->
+<div id="shutdownScreen" hidden>
+    <p id="shutdownText">Windows is shutting down...</p>
+
+    <!-- the short msg, edit this -->
+    <p id="finalMessage">
+        ok that's it, archive's done. happy birthday, twunc.
+        don't change too much, and keep being annoying. (a little.)
+        <br><br>
+        - slow uni gurl
+    </p>
+
+    <a id="restartLink" href="{{ url_for('home') }}">restart</a>
+</div>
+
+<script>
+    // ---------- the cats ----------
+    // color = body color, pose = sit / loaf, face = smug / angry / shocked / sleepy / heart / sideeye
+    // say = what the bubble says. edit whatever u want
+    const cats = [
+        { color: "#f4a950", pose: "sit",  face: "smug",    say: "unc",         tabby: true,  w: 1 },
+        { color: "#b9bcc4", pose: "loaf", face: "angry",   say: "ratio",       tabby: false, w: 2 },
+        { color: "#f6f3ee", pose: "sit",  face: "shocked", say: "u lost AGAIN", tabby: false, w: 3 },
+        { color: "#4a4a52", pose: "loaf", face: "sleepy",  say: "9pm gang",    tabby: false, w: 1 },
+        { color: "#e8d3a8", pose: "sit",  face: "heart",   say: "hbd unc",     tabby: false, w: 2 },
+        { color: "#a8774a", pose: "sit",  face: "sideeye", say: "mid reel",    tabby: true,  w: 3 },
+        { color: "#f4a950", pose: "loaf", face: "smug",    say: "L",           tabby: true,  w: 1 },
+        { color: "#b9bcc4", pose: "sit",  face: "sideeye", say: "skill issue", tabby: false, w: 2 }
+    ];
+
+    function catSVG(c) {
+        const O = "#2b2b2b";
+        const pink = "#f4a3b5";
+        const dark = c.color === "#4a4a52";   // dark cat gets lighter details
+        let s = '<svg viewBox="0 0 120 130" width="100%" style="filter:url(#wobble' + c.w + ');overflow:visible" ' +
+                'fill="none" stroke="' + O + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
+
+        // tail (outline first, then color on top)
+        s += '<path d="M84 112 C116 108 120 78 102 70" stroke="' + O + '" stroke-width="13"/>';
+        s += '<path d="M84 112 C116 108 120 78 102 70" stroke="' + c.color + '" stroke-width="7"/>';
+
+        // body + paws
+        if (c.pose === "loaf") {
+            s += '<ellipse cx="60" cy="100" rx="46" ry="24" fill="' + c.color + '"/>';
+            s += '<ellipse cx="44" cy="120" rx="10" ry="6" fill="' + c.color + '"/>';
+            s += '<ellipse cx="76" cy="120" rx="10" ry="6" fill="' + c.color + '"/>';
+        } else {
+            s += '<ellipse cx="60" cy="98" rx="28" ry="30" fill="' + c.color + '"/>';
+            s += '<ellipse cx="48" cy="123" rx="9" ry="6" fill="' + c.color + '"/>';
+            s += '<ellipse cx="72" cy="123" rx="9" ry="6" fill="' + c.color + '"/>';
+        }
+
+        // ears
+        s += '<path d="M32 44 L30 14 L54 28 Z" fill="' + c.color + '"/>';
+        s += '<path d="M88 44 L90 14 L66 28 Z" fill="' + c.color + '"/>';
+        s += '<path d="M36 36 L35 23 L46 29 Z" fill="' + pink + '" stroke="none"/>';
+        s += '<path d="M84 36 L85 23 L74 29 Z" fill="' + pink + '" stroke="none"/>';
+
+        // head
+        s += '<ellipse cx="60" cy="52" rx="33" ry="28" fill="' + c.color + '"/>';
+
+        // tabby stripes
+        if (c.tabby) {
+            s += '<path d="M60 25 V34 M51 27 L53 35 M69 27 L67 35" stroke-width="2.5"/>';
+        }
+
+        // eyes
+        const xs = [47, 73];
+        xs.forEach(function (x) {
+            if (c.face === "smug") {
+                s += '<path d="M' + (x - 7) + ' 50 H' + (x + 7) + ' A7 7 0 0 1 ' + (x - 7) + ' 50 Z" fill="#fff"/>';
+                s += '<circle cx="' + x + '" cy="53" r="2.5" fill="' + O + '" stroke="none"/>';
+            } else if (c.face === "angry") {
+                s += '<circle cx="' + x + '" cy="53" r="6" fill="#fff"/>';
+                s += '<circle cx="' + x + '" cy="54" r="2.5" fill="' + O + '" stroke="none"/>';
+            } else if (c.face === "shocked") {
+                s += '<circle cx="' + x + '" cy="52" r="8" fill="#fff"/>';
+                s += '<circle cx="' + x + '" cy="52" r="2" fill="' + O + '" stroke="none"/>';
+            } else if (c.face === "sleepy") {
+                s += '<path d="M' + (x - 7) + ' 52 Q' + x + ' 58 ' + (x + 7) + ' 52" stroke="' + (dark ? "#ddd" : O) + '"/>';
+            } else if (c.face === "heart") {
+                s += '<path d="M' + x + ' 58 C' + (x - 12) + ' 48 ' + (x - 5) + ' 42 ' + x + ' 49 C' + (x + 5) + ' 42 ' + (x + 12) + ' 48 ' + x + ' 58 Z" fill="#e8445f" stroke-width="2"/>';
+            } else if (c.face === "sideeye") {
+                s += '<circle cx="' + x + '" cy="53" r="6" fill="#fff"/>';
+                s += '<circle cx="' + (x + 3) + '" cy="53" r="3" fill="' + O + '" stroke="none"/>';
+                s += '<path d="M' + (x - 7) + ' 48 H' + (x + 7) + '"/>';
+            }
+        });
+
+        // angry brows
+        if (c.face === "angry") {
+            s += '<path d="M38 42 L54 47 M82 42 L66 47" stroke-width="3.5"/>';
+        }
+
+        // nose, mouth, whiskers
+        s += '<path d="M57 60 L63 60 L60 64 Z" fill="' + pink + '" stroke-width="2"/>';
+        if (c.face === "shocked") {
+            s += '<ellipse cx="60" cy="72" rx="5" ry="6" fill="#c4506b"/>';
+        } else {
+            s += '<path d="M60 64 Q56 70 51 66 M60 64 Q64 70 69 66" stroke-width="2.5"/>';
+        }
+        s += '<path d="M36 62 L18 58 M36 67 L18 69 M84 62 L102 58 M84 67 L102 69" stroke-width="2" stroke="' + (dark ? "#aaa" : O) + '"/>';
+
+        // zzz for sleepy cat
+        if (c.face === "sleepy") {
+            s += '<text x="92" y="22" font-size="16" fill="' + O + '" stroke="none" font-family="Comic Sans MS, cursive">zZ</text>';
+        }
+
+        return s + '</svg>';
+    }
+
+    // ---------- build the board ----------
+    const board = document.getElementById("doodleBoard");
+    let topZ = 10;
+
+    function buildCats() {
+        const cols = board.clientWidth < 520 ? 3 : 4;
+        const rows = Math.ceil(cats.length / cols);
+        const cellW = board.clientWidth / cols;
+        const cellH = board.clientHeight / rows;
+
+        cats.forEach(function (c, i) {
+            const el = document.createElement("div");
+            el.className = "doodle-cat";
+            el.innerHTML = catSVG(c) + '<span class="cat-bubble">' + c.say + '</span>';
+
+            const col = i % cols, row = Math.floor(i / cols);
+            const x = col * cellW + (cellW - 100) / 2 + (Math.random() - 0.5) * 20;
+            const y = row * cellH + (cellH - 110) / 2 + (Math.random() - 0.5) * 16;
+            el.style.left = Math.max(0, x) + "px";
+            el.style.top = Math.max(22, y) + "px";
+            el.style.transform = "rotate(" + Math.round((Math.random() - 0.5) * 16) + "deg)";
+
+            makeDraggable(el);
+            board.appendChild(el);
+        });
+    }
+
+    function makeDraggable(el) {
+        let startX, startY, origX, origY;
+
+        el.addEventListener("pointerdown", function (e) {
+            el.setPointerCapture(e.pointerId);
+            el.classList.add("dragging");
+            el.style.zIndex = ++topZ;
+            startX = e.clientX; startY = e.clientY;
+            origX = el.offsetLeft; origY = el.offsetTop;
+        });
+
+        el.addEventListener("pointermove", function (e) {
+            if (!el.classList.contains("dragging")) return;
+            const maxX = board.clientWidth - el.offsetWidth;
+            const maxY = board.clientHeight - el.offsetHeight;
+            el.style.left = Math.min(Math.max(0, origX + e.clientX - startX), maxX) + "px";
+            el.style.top = Math.min(Math.max(22, origY + e.clientY - startY), maxY) + "px";
+        });
+
+        function drop() { el.classList.remove("dragging"); }
+        el.addEventListener("pointerup", drop);
+        el.addEventListener("pointercancel", drop);
+    }
+
+    buildCats();
+
+    // ---------- shutdown ----------
+    const screen = document.getElementById("shutdownScreen");
+    const shutdownText = document.getElementById("shutdownText");
+    const finalMessage = document.getElementById("finalMessage");
+    const restartLink = document.getElementById("restartLink");
+    let started = false;
+
+    function startShutdown() {
+        if (started) return;
+        started = true;
+        screen.hidden = false;
+
+        setTimeout(function () {
+            shutdownText.textContent = "It's now safe to turn off your computer.";
+            shutdownText.className = "safe";
+        }, 2200);
+        setTimeout(function () { finalMessage.classList.add("show"); }, 4500);
+        setTimeout(function () { restartLink.classList.add("show"); }, 7000);
+    }
+
+    document.getElementById("shutdownButton").addEventListener("click", startShutdown);
+    document.getElementById("menuShutdown").addEventListener("click", startShutdown);
+
+    // start menu
+    const startMenu = document.getElementById("startMenu");
+    document.getElementById("startButton").addEventListener("click", function (e) {
+        e.stopPropagation();
+        startMenu.hidden = !startMenu.hidden;
+    });
+    document.addEventListener("click", function () { startMenu.hidden = true; });
+</script>
+</body>
+</html>

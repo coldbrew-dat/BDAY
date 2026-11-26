@@ -1,0 +1,244 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday.exe - Archive</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="desktop98-body">
+<div class="desktop98-shell">
+
+    <header class="desktop-topline">
+        <span class="desktop-logo">
+            <span class="g-blue">B</span><span class="g-red">i</span><span class="g-yellow">r</span><span class="g-blue">t</span><span class="g-green">h</span><span class="g-red">d</span><span class="g-yellow">a</span><span class="g-blue">y</span><span class="logo-suffix">.exe</span>
+        </span>
+        <span class="desktop-page-number">ARCHIVE 03 / 04</span>
+    </header>
+
+    <main class="desktop-stage">
+
+        <div class="desktop-icons">
+            <button class="desktop-icon" id="iconTest" type="button">
+                <span class="desktop-icon-graphic">🧓</span>UncTest.exe
+            </button>
+        </div>
+
+        <!-- welcome window -->
+        <section class="win98-window desktop-info-window" id="infoWindow">
+            <div class="win98-titlebar">
+                <span>Welcome.txt</span>
+                <span class="titlebar-static-controls">_ □ ×</span>
+            </div>
+            <div class="win98-window-content">
+                <h1>The Unc Test</h1>
+                <p>
+                    turning 20 is a big deal, so i made u an official test.
+                    6 questions. pass it and u get ur gift. fail it and
+                    u still get it, but u have to live with the result.
+                </p>
+                <button class="retro-button unlock-button" id="startTest" type="button">
+                    Start the test
+                </button>
+            </div>
+        </section>
+
+        <!-- quiz window -->
+        <section class="win98-window app-window" id="appWindow" hidden>
+            <div class="win98-titlebar">
+                <span>UncTest.exe</span>
+                <span class="window-controls">
+                    <span>_</span><span>□</span>
+                    <button id="closeApp" type="button" aria-label="Close">×</button>
+                </span>
+            </div>
+
+            <div class="app-window-content">
+
+                <!-- question screen -->
+                <div class="app-panel" id="quizPanel">
+                    <span class="app-tag" id="qCounter">QUESTION 1 / 6</span>
+                    <div class="progress-track" style="margin:12px 0 18px"><div id="quizFill"></div></div>
+
+                    <div class="debate-card">
+                        <h3 id="qText"></h3>
+                        <div class="debate-options" id="qOptions"></div>
+                        <p id="qRoast"></p>
+                    </div>
+
+                    <button class="retro-button" id="qNext" type="button" style="margin-top:14px" hidden>Next</button>
+                </div>
+
+                <!-- result screen -->
+                <div class="app-panel" id="resultPanel" hidden>
+                    <span class="app-tag">TEST COMPLETE</span>
+                    <h2>Calculating...</h2>
+                    <div class="scan-window">
+                        <div class="scan-labels"><span>UNC LEVEL</span><span id="resPct">0%</span></div>
+                        <div class="scan-meter"><div id="resFill" style="width:0%;height:100%;background:#000080;transition:width 1.6s ease"></div></div>
+                    </div>
+                    <div class="scan-result" id="resultBox" hidden></div>
+                    <button class="retro-button unlock-button" id="giftButton" type="button" hidden>Open the gift</button>
+                    <p class="unlock-message" id="giftMsg" hidden></p>
+                </div>
+
+            </div>
+            <div class="app-window-status">
+                <span id="statusLeft">Test in progress</span>
+                <span>Birthday.exe</span>
+            </div>
+        </section>
+    </main>
+
+    <div class="win98-taskbar">
+        <button class="start-button" id="startButton" type="button">🪟 Start</button>
+        <span class="taskbar-divider"></span>
+        <span class="taskbar-running" id="taskbarRunning">Welcome.txt</span>
+        <span class="taskbar-clock">27 NOV</span>
+    </div>
+
+    <div class="start-menu" id="startMenu" hidden>
+        <div class="start-menu-brand">Unc OS 20</div>
+        <button type="button" id="menuShutdown">Shut Down...</button>
+        <div class="start-menu-note" id="startNote">no refunds</div>
+    </div>
+</div>
+
+<script>
+    // each answer gets its own roast. both options are bad on purpose
+    const questions = [
+        { q: "It's 11pm on a Saturday. What are u doing?",
+          a: [["Out with the boys", "sure bro, ur mom said be home by 10 😭"],
+              ["Already asleep", "bro is in bed with a heating pad. textbook unc."]] },
+        { q: "Someone plays a new song. Ur reaction?",
+          a: [["This is mid", "'music was better in my day' ahh answer"],
+              ["Pretends to like it", "u googled the lyrics after. i know."]] },
+        { q: "Stairs or elevator?",
+          a: [["Stairs", "and then complains about ur knees for 20 mins"],
+              ["Elevator", "20 years old and already scared of stairs lmao"]] },
+        { q: "Ur reel taste is...",
+          a: [["Elite", "delusional. ur reels are mid and u know it."],
+              ["Questionable", "finally some self awareness. growth."]] },
+        { q: "Someone says they're short. Ur move?",
+          a: [["Make fun of them", "ofc. it's literally ur whole personality."],
+              ["Stay quiet", "who are u and what did u do with him"]] },
+        { q: "Final question. Ur age?",
+          a: [["20", "bro said 20 like his back isn't already hurting"],
+              ["Still 19 in my heart", "cope. the calendar doesn't care."]] }
+    ];
+
+    let current = 0;
+    let answered = false;
+
+    const infoWindow = document.getElementById("infoWindow");
+    const appWindow = document.getElementById("appWindow");
+    const quizPanel = document.getElementById("quizPanel");
+    const resultPanel = document.getElementById("resultPanel");
+    const qNext = document.getElementById("qNext");
+    const taskbarRunning = document.getElementById("taskbarRunning");
+
+    function openTest() {
+        infoWindow.hidden = true;
+        appWindow.hidden = false;
+        taskbarRunning.textContent = "UncTest.exe";
+        if (current === 0 && quizPanel.hidden === false) drawQuestion();
+    }
+
+    function drawQuestion() {
+        const item = questions[current];
+        answered = false;
+        document.getElementById("qCounter").textContent =
+            "QUESTION " + (current + 1) + " / " + questions.length;
+        document.getElementById("quizFill").style.width =
+            (current / questions.length * 100) + "%";
+        document.getElementById("qText").textContent = item.q;
+        document.getElementById("qRoast").textContent = "";
+        qNext.hidden = true;
+        qNext.textContent = current === questions.length - 1 ? "See result" : "Next";
+
+        const box = document.getElementById("qOptions");
+        box.innerHTML = "";
+        item.a.forEach(function (opt) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "retro-button";
+            btn.textContent = opt[0];
+            btn.addEventListener("click", function () {
+                if (answered) return;
+                answered = true;
+                document.getElementById("qRoast").textContent = opt[1];
+                qNext.hidden = false;
+            });
+            box.appendChild(btn);
+        });
+    }
+
+    qNext.addEventListener("click", function () {
+        current++;
+        if (current >= questions.length) showResult();
+        else drawQuestion();
+    });
+
+    function showResult() {
+        quizPanel.hidden = true;
+        resultPanel.hidden = false;
+        document.getElementById("statusLeft").textContent = "Test complete";
+
+        // fill bar to 100% then dunk on him
+        setTimeout(function () {
+            document.getElementById("resFill").style.width = "100%";
+            let n = 0;
+            const t = setInterval(function () {
+                n += 4;
+                document.getElementById("resPct").textContent = Math.min(n, 100) + "%";
+                if (n >= 100) {
+                    clearInterval(t);
+                    resultPanel.querySelector("h2").textContent = "Result: certified unc";
+                    const box = document.getElementById("resultBox");
+                    box.hidden = false;
+                    box.innerHTML =
+                        "<b>UNC LEVEL: 100%</b><br>" +
+                        "symptoms: sore back, opinions on everything, sleeps early, hates new music.<br>" +
+                        "no cure found. happy birthday tho 🗿";
+                    document.getElementById("giftButton").hidden = false;
+                }
+            }, 40);
+        }, 300);
+    }
+
+    document.getElementById("giftButton").addEventListener("click", function () {
+    const msg = document.getElementById("giftMsg");
+    msg.hidden = false;
+    msg.textContent = "opening gift...";
+    this.hidden = true;
+    setTimeout(function () {
+        window.location.href = "{{ url_for('final') }}";
+    }, 900);
+});
+
+    document.getElementById("startTest").addEventListener("click", openTest);
+    document.getElementById("iconTest").addEventListener("click", openTest);
+
+    document.getElementById("closeApp").addEventListener("click", function () {
+        appWindow.hidden = true;
+        infoWindow.hidden = false;
+        taskbarRunning.textContent = "Welcome.txt";
+    });
+
+    // start menu
+    const startMenu = document.getElementById("startMenu");
+    document.getElementById("startButton").addEventListener("click", function (e) {
+        e.stopPropagation();
+        startMenu.hidden = !startMenu.hidden;
+    });
+    document.addEventListener("click", function () { startMenu.hidden = true; });
+    document.getElementById("menuShutdown").addEventListener("click", function (e) {
+        e.stopPropagation();
+        document.getElementById("startNote").textContent = "nah ur staying 😼";
+    });
+
+    drawQuestion();
+</script>
+</body>
+</html>

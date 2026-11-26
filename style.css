@@ -1,0 +1,2726 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* TOP BAR */
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 25px;
+    border-bottom: 1px solid #eeeeee;
+
+    font-size: 12px;
+    color: #555555;
+}
+
+.status {
+    color: #777777;
+}
+
+
+/* MAIN HOMEPAGE */
+
+.home {
+    min-height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+
+/* GOOGLE-INSPIRED LOGO */
+
+.logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 75px;
+    font-weight: bold;
+    letter-spacing: -4px;
+
+    margin: 0;
+}
+
+.blue {
+    color: #4285F4;
+}
+
+.red {
+    color: #EA4335;
+}
+
+.yellow {
+    color: #FBBC05;
+}
+
+.green {
+    color: #34A853;
+}
+
+.extension {
+    font-size: 20px;
+    letter-spacing: 0;
+    color: #777777;
+}
+
+
+/* TAGLINE */
+
+.tagline {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    color: #555555;
+}
+
+
+/* SEARCH BOX */
+
+.search-area {
+    width: 100%;
+    max-width: 530px;
+    text-align: center;
+}
+
+.search-box {
+    width: 100%;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #999999;
+    padding: 0 12px;
+
+    box-shadow: inset 0 1px 2px #dddddd;
+}
+
+.search-box:hover {
+    border-color: #555555;
+}
+
+.search-icon {
+    font-size: 25px;
+    color: #777777;
+    margin-right: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+
+    font-size: 15px;
+    background: transparent;
+}
+
+
+/* BUTTONS */
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.button-row button {
+    background: #f3f3f3;
+    border: 1px solid #cccccc;
+
+    padding: 8px 15px;
+
+    font-size: 12px;
+    color: #333333;
+
+    cursor: pointer;
+}
+
+.button-row button:hover {
+    border-color: #888888;
+    background: #eeeeee;
+}
+
+
+/* LITTLE HINT */
+
+.hint {
+    font-size: 12px;
+    color: #777777;
+    margin-top: 25px;
+}
+
+
+/* FOOTER */
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+
+    width: 100%;
+    padding: 15px 25px;
+
+    font-size: 11px;
+    color: #888888;
+
+    border-top: 1px solid #eeeeee;
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-center {
+    text-align: center;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+
+    .logo {
+        font-size: 53px;
+    }
+
+    .top-bar {
+        padding: 12px;
+    }
+
+    .search-area {
+        max-width: 100%;
+    }
+
+    .button-row {
+        flex-wrap: wrap;
+    }
+
+}
+
+/* SLIDE 02 - BIRTHDAY RESULT */
+
+.error {
+    color: #cc3333;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.result-page {
+    min-height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+    text-align: center;
+}
+
+.result-label {
+    font-size: 11px;
+    color: #777777;
+    letter-spacing: 2px;
+}
+
+.result-title {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    color: #333333;
+}
+
+.result-message {
+    max-width: 480px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555555;
+}
+
+.back-link {
+    margin-top: 30px;
+    color: #0000CC;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+
+/* ===== BIRTHDAY MESSAGE PAGE ===== */
+
+.birthday-body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f2f0e9;
+    color: #252525;
+    font-family: Arial, sans-serif;
+}
+
+.birthday-shell {
+    width: min(900px, calc(100% - 40px));
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 22px 0 14px;
+}
+
+/* TOP BAR */
+
+.birthday-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.birthday-logo {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.birthday-logo span {
+    color: #4285f4;
+}
+
+.page-number {
+    color: #777;
+    letter-spacing: 1px;
+}
+
+/* MAIN CARD */
+
+.birthday-card {
+    width: 100%;
+    max-width: 760px;
+    box-sizing: border-box;
+    margin: auto;
+    padding: clamp(25px, 5vw, 48px);
+    background: #fff;
+    border: 1px solid #dedbd2;
+    border-radius: 12px;
+    box-shadow: 8px 8px 0 #dedbd2;
+    animation: cardAppear 0.6s ease both;
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.status-label {
+    color: #23834b;
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.age-stamp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #fff0a8;
+    color: #684f00;
+    font-size: 22px;
+    font-weight: bold;
+    transform: rotate(8deg);
+}
+
+.birthday-card h1 {
+    margin: 0 0 24px;
+    font-size: clamp(27px, 5vw, 42px);
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+}
+
+.card-divider {
+    height: 1px;
+    background: #e8e5dd;
+    margin-bottom: 25px;
+}
+
+/* MESSAGE TEXT */
+
+.birthday-letter {
+    max-width: 650px;
+    font-size: 15px;
+    line-height: 1.85;
+    color: #454545;
+}
+
+.birthday-letter p {
+    margin: 0 0 18px;
+}
+
+/* CLICK TO REVEAL MESSAGE */
+
+.secret-message {
+    margin-top: 25px;
+    padding: 14px 16px;
+    background: #f6f5f0;
+    border: 1px dashed #c9c4b6;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.secret-message summary {
+    cursor: pointer;
+    font-family: monospace;
+    color: #4169a8;
+}
+
+.secret-message summary:hover {
+    color: #24457b;
+}
+
+.secret-message p {
+    margin: 12px 0 2px;
+    line-height: 1.6;
+}
+
+/* BOTTOM OF CARD */
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid #e8e5dd;
+}
+
+.card-bottom > span {
+    color: #999;
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.archive-button {
+    display: inline-block;
+    padding: 12px 18px;
+    background: #4285f4;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.archive-button:hover {
+    background: #2868d7;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px #4285f444;
+}
+
+/* FOOTER */
+
+.birthday-footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    color: #888;
+    font-family: monospace;
+    font-size: 11px;
+}
+
+.birthday-footer span:nth-child(2) {
+    text-align: center;
+}
+
+.birthday-footer span:nth-child(3) {
+    text-align: right;
+}
+
+/* ENTRANCE ANIMATION */
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE SCREEN */
+
+@media (max-width: 600px) {
+    .birthday-shell {
+        width: calc(100% - 24px);
+    }
+
+    .birthday-card {
+        padding: 24px 20px;
+    }
+
+    .birthday-footer {
+        font-size: 9px;
+    }
+
+    .birthday-letter {
+        font-size: 14px;
+    }
+}
+
+
+/* ===== OLD GOOGLE THEME: SLIDE 2 ===== */
+
+.birthday-body {
+    background: #ffffff;
+    color: #202124;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.birthday-shell {
+    width: min(760px, calc(100% - 36px));
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 25px 0 15px;
+    box-sizing: border-box;
+}
+
+/* GOOGLE-STYLE LOGO */
+
+.birthday-logo {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    letter-spacing: -1px;
+}
+
+.birthday-logo .g-blue {
+    color: #4285f4;
+}
+
+.birthday-logo .g-red {
+    color: #ea4335;
+}
+
+.birthday-logo .g-yellow {
+    color: #fbbc05;
+}
+
+.birthday-logo .g-green {
+    color: #34a853;
+}
+
+.birthday-logo .logo-suffix {
+    color: #4285f4;
+    font-size: 17px;
+    letter-spacing: 0;
+}
+
+/* TOP HEADER */
+
+.birthday-topbar {
+    border-bottom: 1px solid #dadce0;
+    padding-bottom: 15px;
+    margin-bottom: 35px;
+}
+
+/* REMOVE MODERN CARD DESIGN */
+
+.birthday-card {
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+}
+
+/* MESSAGE HEADING */
+
+.birthday-card h1 {
+    color: #202124;
+    font-size: 27px;
+    font-weight: bold;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+}
+
+/* MESSAGE STATUS */
+
+.status-label {
+    color: #188038;
+    font-size: 11px;
+}
+
+.age-stamp {
+    width: auto;
+    height: auto;
+    padding: 5px 12px;
+    border: 1px solid #fbbc05;
+    border-radius: 0;
+    background: #fff;
+    color: #a66c00;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+    transform: none;
+}
+
+.card-divider {
+    background: #dadce0;
+    margin-bottom: 24px;
+}
+
+/* MESSAGE */
+
+.birthday-letter {
+    max-width: 650px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333333;
+}
+
+.birthday-letter p {
+    margin-bottom: 16px;
+}
+
+/* HIDDEN MESSAGE */
+
+.secret-message {
+    background: #f8f9fa;
+    border: 1px dashed #b8c4d6;
+    border-radius: 0;
+    padding: 13px;
+}
+
+.secret-message summary {
+    color: #1a0dab;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.secret-message p {
+    color: #333;
+}
+
+/* CLASSIC HYPERLINK STYLE */
+
+.archive-button {
+    background: none;
+    color: #1a0dab;
+    border-radius: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: underline;
+    transition: none;
+}
+
+.archive-button:hover {
+    background: none;
+    color: #d93025;
+    transform: none;
+    box-shadow: none;
+}
+
+/* BOTTOM */
+
+.card-bottom {
+    border-top: 1px solid #dadce0;
+}
+
+.birthday-footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid #eeeeee;
+    color: #777777;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+}
+
+
+/* ===== WINDOWS 98 MESSAGE WINDOW ===== */
+
+/* Classic system and webpage fonts */
+
+.birthday-body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #222222;
+}
+
+.birthday-topbar,
+.page-number,
+.status-label,
+.card-bottom,
+.secret-message,
+.birthday-footer {
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.birthday-logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+/* Windows 98 outer window */
+
+.birthday-card {
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3px;
+    box-sizing: border-box;
+
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    border-radius: 0;
+
+    box-shadow: 2px 2px 0 #808080;
+    animation: none;
+}
+
+/* Blue title bar */
+
+.win98-titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 27px;
+    padding: 3px 4px 3px 8px;
+    box-sizing: border-box;
+
+    background: #000080;
+    color: white;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.win98-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.win98-app-icon {
+    font-size: 15px;
+}
+
+/* Minimise, maximise and close buttons */
+
+.win98-controls {
+    display: flex;
+    gap: 3px;
+}
+
+.win98-controls span {
+    width: 19px;
+    height: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #c0c0c0;
+    color: #000000;
+
+    border: 1px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* White window content */
+
+.win98-content {
+    background: #ffffff;
+    padding: 32px clamp(20px, 4vw, 42px);
+    border: 1px solid #808080;
+}
+
+/* Birthday heading */
+
+.birthday-card h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(25px, 4vw, 31px);
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    color: #222222;
+}
+
+/* Birthday message */
+
+.birthday-letter {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333333;
+}
+
+.birthday-letter p {
+    margin-bottom: 17px;
+}
+
+/* Age stamp */
+
+.age-stamp {
+    border-radius: 0;
+    background: #fff6cc;
+    border: 1px solid #c7a94a;
+    font-family: Tahoma, Arial, sans-serif;
+    transform: none;
+}
+
+/* Hidden message */
+
+.secret-message {
+    border-radius: 0;
+    background: #eeeeee;
+    border: 1px dashed #999999;
+}
+
+.secret-message summary {
+    font-family: Tahoma, Arial, sans-serif;
+    cursor: pointer;
+}
+
+/* Classic webpage hyperlink */
+
+.archive-button {
+    background: transparent;
+    color: #0000ee;
+    text-decoration: underline;
+    border-radius: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 0;
+}
+
+.archive-button:hover {
+    background: transparent;
+    color: #551a8b;
+    text-decoration: underline;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Footer */
+
+.birthday-footer {
+    font-family: Tahoma, Arial, sans-serif;
+    text-align: center;
+}
+/* ===== BALLOON CELEBRATION ===== */
+
+#balloon-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.celebration-balloon {
+    position: absolute;
+
+    width: 32px;
+    height: 40px;
+
+    background: var(--balloon-color);
+
+    border-radius: 50% 50% 45% 45%;
+
+    box-shadow: inset -5px -4px 0 rgba(0, 0, 0, 0.12);
+
+    animation: balloon-float 2.2s ease-out forwards;
+}
+
+.celebration-balloon::before {
+    content: "";
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--balloon-color);
+
+    left: 12px;
+    bottom: -4px;
+
+    transform: rotate(45deg);
+}
+
+.celebration-balloon::after {
+    content: "";
+    position: absolute;
+
+    width: 1px;
+    height: 25px;
+
+    background: #888888;
+
+    left: 16px;
+    top: 39px;
+}
+
+@keyframes balloon-float {
+
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translate(calc(-50% + var(--drift)), calc(-50% - 55vh))
+            scale(0.9);
+    }
+}
+
+/* Confetti burst */
+
+.confetti-piece {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    animation: confetti-burst 0.7s ease-out forwards;
+}
+
+@keyframes confetti-burst {
+
+    to {
+        transform:
+            translate(var(--dx), var(--dy))
+            rotate(var(--rotation));
+
+        opacity: 0;
+    }
+}
+
+/* =================================
+   SLIDE 3 - WINDOWS 98 ARCHIVE
+================================= */
+
+.capsule-body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffffff;
+    color: #222222;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.capsule-shell {
+    width: min(900px, calc(100% - 32px));
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 25px 0 15px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* TOP HEADER */
+
+.capsule-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid #dadce0;
+}
+
+.capsule-topbar .birthday-logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+/* EXPLORER WINDOW */
+
+.explorer-window {
+    width: 100%;
+    margin: auto;
+
+    box-sizing: border-box;
+    padding: 3px;
+
+    background: #c0c0c0;
+
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    box-shadow: 2px 2px 0 #808080;
+}
+
+/* BLUE TITLE BAR */
+
+.explorer-titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #000080;
+    color: #ffffff;
+
+    min-height: 27px;
+    padding: 3px 4px 3px 8px;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.explorer-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.explorer-controls {
+    display: flex;
+    gap: 3px;
+}
+
+.explorer-controls span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 19px;
+    height: 19px;
+
+    background: #c0c0c0;
+    color: #000000;
+
+    border: 1px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* MENU BAR */
+
+.explorer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 21px;
+
+    padding: 8px 12px;
+
+    background: #c0c0c0;
+    border-bottom: 1px solid #808080;
+
+    color: #222222;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* ADDRESS BAR */
+
+.explorer-address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 7px 10px;
+
+    background: #c0c0c0;
+    border-bottom: 1px solid #808080;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+}
+
+.address-label {
+    color: #333333;
+}
+
+.address-path {
+    flex: 1;
+    padding: 5px 8px;
+
+    background: #ffffff;
+
+    border: 1px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+
+    color: #222222;
+}
+
+/* MAIN TWO-COLUMN AREA */
+
+.explorer-main {
+    display: grid;
+    grid-template-columns: 255px minmax(0, 1fr);
+
+    min-height: 380px;
+    background: #ffffff;
+}
+
+/* LEFT SIDEBAR */
+
+.archive-sidebar {
+    padding: 18px 12px;
+
+    background: #f4f4f4;
+    border-right: 1px solid #808080;
+
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.sidebar-heading {
+    margin-bottom: 8px;
+
+    color: #000080;
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-description {
+    margin: 0 0 17px;
+
+    color: #666666;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* FILE LINKS */
+
+.archive-file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.archive-file {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 9px 7px;
+
+    color: #222222;
+    text-decoration: none;
+
+    border: 1px solid transparent;
+
+    font-size: 12px;
+
+    transition: background 0.15s;
+}
+
+.archive-file:hover {
+    background: #e5e5e5;
+    border: 1px dotted #777777;
+}
+
+.archive-file.active {
+    background: #000080;
+    color: #ffffff;
+    border: 1px solid #000080;
+}
+
+.file-mini-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    width: 31px;
+    height: 35px;
+
+    background: #ffffff;
+    color: #000080;
+
+    border: 1px solid #777777;
+
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.file-label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.file-label small {
+    display: block;
+    margin-top: 4px;
+
+    color: #777777;
+    font-size: 9px;
+}
+
+.archive-file.active .file-label small {
+    color: #d7d7ff;
+}
+
+/* RIGHT PREVIEW AREA */
+
+.file-preview {
+    min-width: 0;
+    background: #ffffff;
+}
+
+.preview-heading {
+    padding: 10px 13px;
+
+    background: #eeeeee;
+    border-bottom: 1px solid #cccccc;
+
+    color: #333333;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.preview-paper {
+    padding: 22px 25px;
+}
+
+.preview-file-label {
+    margin-bottom: 20px;
+
+    color: #777777;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.preview-text {
+    margin: 0;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+
+    color: #333333;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* STATUS BAR */
+
+.explorer-statusbar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding: 6px 9px;
+
+    background: #c0c0c0;
+
+    border-top: 1px solid #808080;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 10px;
+}
+
+/* NAVIGATION BELOW WINDOW */
+
+.capsule-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 23px;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+.classic-link {
+    color: #0000ee;
+    text-decoration: underline;
+}
+
+.classic-link:hover {
+    color: #551a8b;
+}
+
+.archive-hint {
+    color: #777777;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+}
+
+/* FOOTER */
+
+.capsule-footer {
+    margin-top: auto;
+    padding-top: 35px;
+
+    color: #777777;
+
+    text-align: center;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 650px) {
+
+    .capsule-shell {
+        width: calc(100% - 20px);
+    }
+
+    .explorer-main {
+        grid-template-columns: 1fr;
+    }
+
+    .archive-sidebar {
+        border-right: none;
+        border-bottom: 1px solid #808080;
+    }
+
+    .archive-file-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .preview-paper {
+        padding: 18px;
+    }
+
+    .explorer-menu {
+        gap: 12px;
+    }
+}
+
+/* =========================================
+   SLIDE 3 — WINDOWS 98 DESKTOP
+========================================= */
+
+.desktop98-body {
+    margin: 0;
+    min-height: 100vh;
+    background: #008080;
+    color: #111111;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.desktop98-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TOP HEADER */
+
+.desktop-topline {
+    height: 43px;
+    padding: 0 22px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #ffffff;
+    border-bottom: 1px solid #cccccc;
+}
+
+.desktop-logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.desktop-logo .g-blue { color: #4285f4; }
+.desktop-logo .g-red { color: #ea4335; }
+.desktop-logo .g-yellow { color: #fbbc05; }
+.desktop-logo .g-green { color: #34a853; }
+
+.desktop-logo .logo-suffix {
+    color: #4285f4;
+    font-size: 16px;
+    letter-spacing: 0;
+}
+
+.desktop-page-number {
+    color: #555555;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+
+/* DESKTOP AREA */
+
+.desktop-stage {
+    position: relative;
+    flex: 1;
+    min-height: 590px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+
+/* DESKTOP ICONS */
+
+.desktop-icons {
+    position: absolute;
+    top: 25px;
+    left: 22px;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.desktop-icon {
+    width: 90px;
+    min-height: 80px;
+    padding: 7px 4px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    border: 1px solid transparent;
+    background: transparent;
+
+    color: #ffffff;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    text-align: center;
+
+    text-shadow: 1px 1px #333333;
+    cursor: pointer;
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus-visible {
+    background: rgba(0, 0, 128, 0.24);
+    border: 1px dotted #ffffff;
+    outline: none;
+}
+
+.desktop-icon:active {
+    background: rgba(0, 0, 128, 0.4);
+}
+
+.desktop-icon.is-visited .desktop-icon-graphic {
+    filter: grayscale(0.25);
+}
+
+.desktop-icon-graphic {
+    font-size: 35px;
+    line-height: 1.2;
+}
+
+
+/* WINDOWS 98 WINDOW FRAME */
+
+.win98-window {
+    background: #c0c0c0;
+
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+/* WINDOW TITLE BAR */
+
+.win98-titlebar {
+    min-height: 27px;
+    padding: 3px 5px 3px 8px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #000080;
+    color: #ffffff;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.titlebar-static-controls {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+
+/* WELCOME WINDOW */
+
+.desktop-info-window {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+
+    width: min(420px, calc(100% - 190px));
+}
+
+.win98-window-content {
+    padding: 22px 24px;
+    background: #c0c0c0;
+}
+
+.win98-window-content h1 {
+    margin: 0 0 12px;
+    font-size: 24px;
+    color: #000080;
+}
+
+.win98-window-content > p {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.progress-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-top: 22px;
+    margin-bottom: 7px;
+
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#progressStatus {
+    color: #a00000;
+}
+
+.progress-track {
+    height: 17px;
+    padding: 2px;
+
+    background: #ffffff;
+
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+}
+
+#progressFill {
+    width: 0%;
+    height: 100%;
+    background: #000080;
+    transition: width 0.3s ease;
+}
+
+.tiny-hint {
+    color: #555555;
+    font-size: 10px !important;
+}
+
+
+/* RETRO BUTTONS */
+
+.retro-button {
+    display: inline-block;
+    padding: 8px 13px;
+
+    background: #c0c0c0;
+    color: #111111;
+
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.retro-button:hover:not(:disabled) {
+    background: #d5d5d5;
+}
+
+.retro-button:active:not(:disabled) {
+    border-color: #404040 #ffffff #ffffff #404040;
+    padding: 9px 12px 7px 14px;
+}
+
+.retro-button:disabled {
+    color: #777777;
+    cursor: default;
+}
+
+.unlock-button {
+    margin-top: 12px;
+    background: #d9e8ff;
+    font-weight: bold;
+}
+
+.unlock-message {
+    color: #006400;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+
+/* APPLICATION WINDOW */
+
+.app-window {
+    position: absolute;
+    z-index: 10;
+
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+
+    width: min(570px, calc(100% - 190px));
+    max-height: calc(100vh - 120px);
+
+    overflow-y: auto;
+}
+
+.app-window[hidden],
+.app-panel[hidden],
+.unlock-button[hidden],
+.start-menu[hidden] {
+    display: none !important;
+}
+
+.window-controls {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.window-controls span,
+.window-controls button {
+    width: 19px;
+    height: 19px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #c0c0c0;
+    color: #000000;
+
+    border: 1px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.window-controls button {
+    cursor: pointer;
+}
+
+.app-window-content {
+    min-height: 240px;
+    padding: 24px;
+    background: #eeeeee;
+}
+
+.app-tag {
+    color: #000080;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.app-panel h2 {
+    margin: 12px 0 8px;
+    color: #222222;
+    font-size: 21px;
+}
+
+.app-description {
+    margin: 0 0 21px;
+    color: #555555;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.app-window-status {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 9px;
+
+    background: #c0c0c0;
+    border-top: 1px solid #808080;
+
+    color: #333333;
+    font-size: 10px;
+}
+
+
+/* APP 1 — REDDIT TIMELINE */
+
+.timeline-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin: 27px 0 22px;
+}
+
+.timeline-node {
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+
+    color: #777777;
+    font-size: 10px;
+    text-align: center;
+}
+
+.timeline-node span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dddddd;
+    border: 1px solid #999999;
+    border-radius: 50%;
+
+    font-weight: bold;
+}
+
+.timeline-node.current span,
+.timeline-node.done span {
+    background: #000080;
+    color: #ffffff;
+    border-color: #000080;
+}
+
+.timeline-node.current strong,
+.timeline-node.done strong {
+    color: #000080;
+}
+
+.timeline-connector {
+    flex: 1;
+    height: 2px;
+    margin-top: -19px;
+    background: #aaaaaa;
+}
+
+.interaction-box {
+    min-height: 60px;
+    margin-bottom: 16px;
+    padding: 12px;
+
+    background: #ffffff;
+    border: 1px solid #aaaaaa;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.interaction-box p {
+    margin: 0;
+}
+
+
+/* APP 2 — REELBOX */
+
+.reel-screen {
+    padding: 13px;
+    background: #222222;
+    color: #ffffff;
+    border: 3px solid #777777;
+}
+
+.reel-screen-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    color: #bdbdbd;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.reel-visual {
+    min-height: 125px;
+    margin: 12px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dedede;
+    color: #222222;
+    font-size: 58px;
+}
+
+.reel-caption {
+    min-height: 35px;
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.reel-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+#reelCounter {
+    color: #555555;
+    font-size: 10px;
+}
+
+
+/* APP 3 — HEIGHT SCAN */
+
+.scan-window {
+    padding: 15px;
+    margin: 15px 0;
+
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.scan-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    color: #555555;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.scan-meter {
+    height: 19px;
+    padding: 2px;
+
+    background: #eeeeee;
+    border: 1px solid #888888;
+}
+
+#scanFill {
+    width: 0%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        #000080 0px,
+        #000080 12px,
+        #ffffff 12px,
+        #ffffff 14px
+    );
+
+    transition: width 1.5s ease;
+}
+
+#scanStatus {
+    margin: 10px 0 0;
+    color: #555555;
+    font-size: 11px;
+}
+
+.scan-result {
+    margin-top: 15px;
+    padding: 12px;
+
+    background: #fff8d9;
+    border: 1px solid #c2a64d;
+
+    color: #594500;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* APP 4 — DEBATE MACHINE */
+
+.debate-card {
+    padding: 17px;
+
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #ffffff #888888 #888888 #ffffff;
+}
+
+.debate-label {
+    color: #777777;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.debate-card h3 {
+    margin: 14px 0 19px;
+    color: #000080;
+    font-size: 20px;
+}
+
+.debate-options {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+
+.debate-result {
+    min-height: 25px;
+}
+
+#debateResult {
+    min-height: 34px;
+    margin: 15px 0 0;
+
+    color: #444444;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.classic-link-button {
+    margin-top: 16px;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+
+    color: #0000ee;
+    text-decoration: underline;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.classic-link-button:hover {
+    color: #551a8b;
+}
+
+
+/* WINDOWS 98 TASKBAR */
+
+.win98-taskbar {
+    position: fixed;
+    z-index: 30;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 39px;
+    padding: 3px 5px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+}
+
+.start-button {
+    height: 29px;
+    padding: 3px 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    color: #111111;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.start-button:active {
+    border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.taskbar-divider {
+    width: 2px;
+    height: 25px;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #ffffff;
+}
+
+.taskbar-running {
+    flex: 1;
+    max-width: 230px;
+    height: 27px;
+    padding: 5px 9px;
+    box-sizing: border-box;
+
+    background: #dddddd;
+    border: 1px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+
+    color: #222222;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.taskbar-clock {
+    min-width: 75px;
+    padding: 6px 9px;
+
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+
+    color: #222222;
+    font-size: 11px;
+    text-align: center;
+}
+
+
+/* START MENU */
+
+.start-menu {
+    position: fixed;
+    z-index: 40;
+    bottom: 40px;
+    left: 5px;
+
+    width: 215px;
+    padding: 4px;
+
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.start-menu-brand {
+    padding: 14px 10px;
+    margin-bottom: 4px;
+
+    background: #000080;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.start-menu button {
+    width: 100%;
+    padding: 10px;
+
+    background: transparent;
+    border: none;
+
+    color: #111111;
+    text-align: left;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.start-menu button:hover {
+    background: #000080;
+    color: #ffffff;
+}
+
+.start-menu-note {
+    padding: 9px 10px;
+    border-top: 1px solid #888888;
+    color: #555555;
+    font-size: 10px;
+}
+
+
+/* MOBILE LAYOUT */
+
+@media (max-width: 650px) {
+
+    .desktop-topline {
+        padding: 0 12px;
+    }
+
+    .desktop-stage {
+        min-height: auto;
+        padding: 15px 10px 60px;
+    }
+
+    .desktop-icons {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 3px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .desktop-icon {
+        width: 100%;
+        min-width: 0;
+        font-size: 9px;
+    }
+
+    .desktop-icon-graphic {
+        font-size: 28px;
+    }
+
+    .desktop-info-window {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .app-window {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: calc(100% - 20px);
+        max-height: 80vh;
+    }
+
+    .app-window-content {
+        padding: 17px;
+    }
+
+    .timeline-node {
+        min-width: 55px;
+        font-size: 9px;
+    }
+
+    .debate-options {
+        flex-direction: column;
+    }
+
+    .debate-options button {
+        width: 100%;
+    }
+}
+
+/* =====================================
+   SLIDE 3 — MESSI PENALTY CHALLENGE
+===================================== */
+
+.football-body {
+    margin: 0;
+    min-height: 100vh;
+    background: #008080;
+    color: #222;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.football-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+
+.football-header {
+    min-height: 44px;
+    padding: 0 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.football-logo {
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+/* MAIN WINDOWS 98 WINDOW */
+
+.football-window {
+    width: min(760px, calc(100% - 30px));
+    margin: 35px auto;
+    background: #c0c0c0;
+    padding: 3px;
+    box-sizing: border-box;
+    border: 2px solid;
+    border-color: #fff #404040 #404040 #fff;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.25);
+}
+
+.football-titlebar {
+    min-height: 28px;
+    padding: 4px 6px 4px 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000080;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.football-window-buttons {
+    display: flex;
+    gap: 3px;
+}
+
+.football-window-buttons span {
+    width: 19px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c0c0c0;
+    color: #111;
+    border: 1px solid;
+    border-color: #fff #404040 #404040 #fff;
+    font-size: 13px;
+}
+
+.football-menubar {
+    display: flex;
+    gap: 23px;
+    padding: 8px 12px;
+    font-size: 11px;
+    background: #c0c0c0;
+    border-bottom: 1px solid #999;
+}
+
+/* GAME CONTENT */
+
+.football-content {
+    padding: 22px;
+    background: #eeeeee;
+}
+
+.game-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 19px;
+}
+
+.game-label {
+    color: #000080;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.game-heading h1 {
+    margin: 6px 0;
+    font-size: clamp(22px, 4vw, 30px);
+}
+
+.game-heading p {
+    margin: 0;
+    color: #666;
+    font-size: 12px;
+}
+
+.messi-badge {
+    flex-shrink: 0;
+    width: 61px;
+    height: 68px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #173f83;
+    border: 3px solid #d5b45c;
+    color: white;
+    transform: rotate(3deg);
+}
+
+.messi-badge strong {
+    font-size: 30px;
+    line-height: 1;
+}
+
+.messi-badge span {
+    font-size: 8px;
+    margin-top: 4px;
+}
+
+/* SCOREBOARD */
+
+.scoreboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px;
+    background: #202020;
+    color: #fff;
+}
+
+.team-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.team-symbol {
+    font-size: 18px;
+}
+
+.score {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.score-separator {
+    color: #fbbc05;
+}
+
+.match-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 2px;
+    font-size: 9px;
+    font-weight: bold;
+    color: #555;
+    letter-spacing: .5px;
+}
+
+/* FOOTBALL PITCH */
+
+.football-pitch {
+    position: relative;
+    height: 285px;
+    overflow: hidden;
+    border: 3px solid white;
+    background: repeating-linear-gradient(
+        0deg,
+        #26833b 0px,
+        #26833b 45px,
+        #2d9143 45px,
+        #2d9143 90px
+    );
+}
+
+.pitch-center-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 1px solid rgba(255,255,255,.4);
+}
+
+.pitch-center-circle {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 50%;
+}
+
+/* GOAL */
+
+.football-goal {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(340px, 78%);
+    height: 125px;
+    box-sizing: border-box;
+    border: 6px solid white;
+    border-bottom-width: 3px;
+    background-color: rgba(255,255,255,.10);
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+
+    background-size: 22px 20px;
+}
+
+.goal-labels {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    height: 100%;
+    align-items: start;
+    padding-top: 6px;
+    box-sizing: border-box;
+    color: rgba(255,255,255,.7);
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.goalkeeper {
+    position: absolute;
+    left: 50%;
+    top: 53px;
+    transform: translateX(-50%);
+    font-size: 39px;
+    transition: transform .35s ease;
+    z-index: 3;
+}
+
+.goalkeeper.dive-left {
+    transform: translateX(-135px) rotate(-45deg);
+}
+
+.goalkeeper.dive-center {
+    transform: translateX(-50%) translateY(8px) scale(1.25);
+}
+
+.goalkeeper.dive-right {
+    transform: translateX(95px) rotate(45deg);
+}
+
+/* MESSI PLAYER MARKER */
+
+.messi-player {
+    position: absolute;
+    bottom: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.messi-shirt {
+    width: 33px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: #193b80;
+    border: 2px solid #d7d7d7;
+    font-weight: bold;
+    font-size: 15px;
+    clip-path: polygon(22% 0, 78% 0, 100% 23%, 84% 39%, 78% 28%, 78% 100%, 22% 100%, 22% 28%, 16% 39%, 0 23%);
+}
+
+/* BALL */
+
+.football-ball {
+    position: absolute;
+    z-index: 5;
+    bottom: 59px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+}
+
+.football-ball.kick {
+    animation: ball-kick .85s cubic-bezier(.2,.8,.3,1) forwards;
+}
+
+@keyframes ball-kick {
+    0% {
+        transform: translate(-50%,0) scale(1);
+    }
+    100% {
+        transform: translate(calc(-50% + var(--shot-x)),-175px) scale(.55);
+    }
+}
+
+/* STATUS MESSAGE */
+
+.match-status {
+    margin-top: 12px;
+    padding: 11px;
+    min-height: 17px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #aaa;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000080;
+}
+
+/* SHOOTING CONTROLS */
+
+.game-controls {
+    margin-top: 17px;
+    text-align: center;
+}
+
+.game-controls > p {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+
+.direction-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.direction-button,
+.shoot-button {
+    padding: 10px 14px;
+    background: #c0c0c0;
+    color: #111;
+    border: 2px solid;
+    border-color: #fff #404040 #404040 #fff;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.direction-button:hover:not(:disabled),
+.shoot-button:hover:not(:disabled) {
+    background: #d8d8d8;
+}
+
+.direction-button.selected {
+    background: #000080;
+    color: #fff;
+    border-color: #404040 #fff #fff #404040;
+}
+
+.direction-button:disabled,
+.shoot-button:disabled {
+    color: #888;
+    cursor: not-allowed;
+}
+
+.shoot-button {
+    display: block;
+    margin: 15px auto 0;
+    min-width: 190px;
+    background: #d7e6ff;
+}
+
+.shoot-button:active:not(:disabled) {
+    border-color: #404040 #fff #fff #404040;
+}
+
+/* FULL TIME PANEL */
+
+.game-over {
+    margin-top: 19px;
+    padding: 19px;
+    text-align: center;
+    background: #fff;
+    border: 2px solid;
+    border-color: #fff #777 #777 #fff;
+}
+
+.game-over[hidden] {
+    display: none;
+}
+
+.final-whistle {
+    font-size: 36px;
+}
+
+.game-over h2 {
+    margin: 7px 0;
+    color: #000080;
+}
+
+.game-over p {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* STATUS BAR */
+
+.football-statusbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 10px;
+    background: #c0c0c0;
+    border-top: 1px solid #888;
+    color: #444;
+    font-size: 9px;
+}
+
+/* FOOTER */
+
+.football-footer {
+    margin-top: auto;
+    padding: 0 20px 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: white;
+    font-size: 11px;
+}
+
+.football-footer a {
+    color: white;
+}
+
+/* MOBILE */
+
+@media (max-width: 560px) {
+
+    .football-header {
+        padding: 0 12px;
+    }
+
+    .football-logo {
+        font-size: 19px;
+    }
+
+    .football-window {
+        margin: 20px auto;
+        width: calc(100% - 18px);
+    }
+
+    .football-content {
+        padding: 13px;
+    }
+
+    .game-heading h1 {
+        font-size: 21px;
+    }
+
+    .football-pitch {
+        height: 255px;
+    }
+
+    .score {
+        font-size: 23px;
+    }
+
+    .team-name {
+        font-size: 8px;
+    }
+
+    .direction-buttons {
+        gap: 5px;
+    }
+
+    .direction-button {
+        flex: 1;
+        padding: 10px 5px;
+        font-size: 9px;
+    }
+
+    .football-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#quizFill {
+    width: 0%;
+    height: 100%;
+    background: #000080;
+    transition: width 0.3s ease;
+}
