@@ -306,6 +306,7 @@
             el.setPointerCapture(e.pointerId);
             el.classList.add("dragging");
             el.style.zIndex = ++topZ;
+            if (window.sfx) window.sfx.meow();
             startX = e.clientX; startY = e.clientY;
             origX = el.offsetLeft; origY = el.offsetTop;
         });
@@ -337,7 +338,7 @@
         started = true;
         screen.hidden = false;
         screen.hidden = false;
-        if (window.sfx) sfx.shutdown();
+        if (window.sfx) window.sfx.shutdown();
 
         setTimeout(function () {
             shutdownText.textContent = "It's now safe to turn off your computer.";
